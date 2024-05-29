@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dev.codescreen.BankLedgerAPI"},{"l":"dev.codescreen.BankLedgerAPI.constants"},{"l":"dev.codescreen.BankLedgerAPI.controller"},{"l":"dev.codescreen.BankLedgerAPI.model"},{"l":"dev.codescreen.BankLedgerAPI.service"}];updateSearchResults();

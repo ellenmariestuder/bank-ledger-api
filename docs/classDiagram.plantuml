@@ -1,0 +1,94 @@
+@startuml BankLedgerAPI;
+RestController *-- TransactionFactory
+RestController *-- ResponseFactory
+RestController *-- DatabaseService
+DatabaseService *-left- AppConstants
+TransactionFactory --> LoadtransactionOutcome
+TransactionFactory --> AuthtransactionOutcome
+LoadtransactionOutcome --|> AbstractTransactionOutcome
+AuthtransactionOutcome --|> AbstractTransactionOutcome
+ResponseFactory --> LoadResponseBody
+ResponseFactory --> AuthResponseBody
+LoadResponseBody --|> ResponseBody
+AuthResponseBody --|> ResponseBody
+DatabaseService --|> DatabaseInterface
+
+class RestController {
++ {static} process()
+}
+
+class TransactionFactory {
++ {static} transactionType()
+}
+
+abstract class AbstractTransactionOutcome{
++ messageId
++ userId
++ responseCode
++ amount
++ currency
++ creditOrDebit
++ {abstract} approvedDenied()
++ {abstract} newBalance()
+}
+
+class LoadtransactionOutcome {
++ approvedDenied()
++ newBalance()
+}
+
+class AuthtransactionOutcome {
++ approvedDenied()
++ newBalance()
+}
+
+class ResponseFactory {
++ {static} transactionType()
+}
+
+abstract class ResponseBody {
++ messageId
++ userId
++ responseCode
++ balance
++ balance.amount
++ balance.currency
++ balance.creditOrDebit
++ toJson()
+}
+
+class LoadResponseBody {
+    + LoadResponseBody()
+}
+
+class AuthResponseBody {
+    + AuthResponseBody()
+}
+
+interface DatabaseInterface {
++ {abstract} open()
++ {abstract} close()
++ {abstract} createUserRecord()
++ {abstract} appendEventRecord()
++ {abstract} updateUserBalance()
+}
+
+
+class DatabaseService {
+- {static} mongoClient;
+- {static} database;
+- {static} transactionOutcome;
++ open()
++ close()
++ createUserRecord()
++ appendEventRecord()
++ updateUserBalance()
+}
+
+class AppConstants {
+    - {static} getUsername()
+    - {static} getPassword()
+    + {static} databaseUri()
+}
+
+@enduml

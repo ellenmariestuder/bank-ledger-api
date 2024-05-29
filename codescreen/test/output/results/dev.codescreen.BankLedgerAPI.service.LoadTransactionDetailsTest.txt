@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: dev.codescreen.BankLedgerAPI.service.LoadTransactionDetailsTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! - in dev.codescreen.BankLedgerAPI.service.LoadTransactionDetailsTest
+testApprovedDenied(dev.codescreen.BankLedgerAPI.service.LoadTransactionDetailsTest)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NullPointerException: Cannot read field "userId" because "requestData" is null
+	at dev.codescreen.BankLedgerAPI.service.LoadTransactionDetailsTest.testApprovedDenied(LoadTransactionDetailsTest.java:36)
+

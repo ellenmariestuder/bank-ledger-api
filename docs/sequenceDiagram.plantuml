@@ -1,0 +1,50 @@
+@startuml BankLedgerAPI;
+
+<style>
+.greenBold {
+  arrow {
+    LineColor green
+    LineThickness 2
+  }
+}
+.redBold {
+  arrow {
+    LineColor red
+    LineThickness 2
+  }
+}
+</style>
+
+participant Participant [
+    =Application
+]
+
+participant RestController
+participant TransactionFactory
+participant TransactionOutcome
+participant DatabaseService
+participant ResponseBody
+participant MongoDB
+
+Participant -> RestController            : request body
+RestController -> TransactionFactory     : request body
+TransactionFactory -> TransactionOutcome : request body
+TransactionOutcome -> TransactionFactory : transactionOutcome\n(instance: auth or load)
+TransactionFactory -> RestController     : transactionOutcome\n(instance)
+RestController -> DatabaseService        : transactionOutcome
+DatabaseService -> MongoDB <<greenBold>> : <color:green> open
+DatabaseService -> DatabaseService       : assemble new User record\n(if applicable)
+DatabaseService -> MongoDB               : new User record (if applicable)
+DatabaseService -> DatabaseService       : assemble new LedgerEvent record
+DatabaseService -> MongoDB               : new LedgerEvent record
+DatabaseService -> MongoDB               : userID
+MongoDB -> DatabaseService               : user.currentBalance
+DatabaseService -> DatabaseService       : calculate updated balance
+DatabaseService -> MongoDB               : new user.currentBalance
+MongoDB -> DatabaseService <<redBold>>   : <color:red> close
+DatabaseService -> RestController        : status code
+RestController -> ResponseBody           : transactionOutcome
+ResponseBody -> ResponseBody             : convert to json 
+ResponseBody -> RestController           : response body
+RestController -> Participant            : response body
+@enduml

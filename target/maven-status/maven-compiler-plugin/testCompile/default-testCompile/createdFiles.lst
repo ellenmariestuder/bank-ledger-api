@@ -1,0 +1,11 @@
+dev/codescreen/BankLedgerAPI/service/AbstracttransactionOutcomeTest.class
+dev/codescreen/BankLedgerAPI/model/AuthResponseBodyTest.class
+dev/codescreen/BankLedgerAPI/model/RequestBodyTest.class
+dev/codescreen/BankLedgerAPI/model/LoadResponseBodyTest.class
+dev/codescreen/BankLedgerAPI/service/AuthtransactionOutcomeTest.class
+dev/codescreen/BankLedgerAPI/service/ResponseFactoryTest.class
+dev/codescreen/BankLedgerAPI/service/TransactionFactoryTest.class
+dev/codescreen/BankLedgerAPI/service/DatabaseServiceTest.class
+dev/codescreen/BankLedgerAPI/service/LoadtransactionOutcomeTest.class
+dev/codescreen/BankLedgerAPI/constants/AppConstantsTest.class
+dev/codescreen/BankLedgerAPI/model/ResponseBodyTest.class
